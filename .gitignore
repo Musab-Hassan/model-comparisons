@@ -2,3 +2,4 @@ datasets/*
 !datasets/.gitkeep
 *.pt
 runs/*
+raw.githubusercontent.com/*
