@@ -134,6 +134,91 @@ Cross-version benchmark comparing nano models across YOLO generations (all 640px
 
 Unsuprisingly, YOLOv11 is the best choice as the latest generation with improved accuracy-efficiency trade-offs.
 
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Musab-Hassan/model-comparisons.git
+cd model-comparisons
+```
+
+### 2. Create Virtual Environment
+
+**Using venv:**
+
+```bash
+python3 -m venv env
+source env/bin/activate # On Linux/macOS
+env\Scripts\activate # On Windows
+```
+
+**Using conda:**
+
+```bash
+conda create -n model-comp python=3.10
+conda activate model-comp
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+**For CUDA GPU Support:**
+If you have an NVIDIA GPU with CUDA support, install PyTorch with CUDA enabled for faster training:
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+Replace `cu118` with your CUDA version (e.g., `cu121` for CUDA 12.1). Check your CUDA version with:
+
+```bash
+nvidia-smi
+```
+
+Then install remaining dependencies:
+
+```bash
+pip install -r requirements.txt --no-deps
+```
+
+### 4. Download Datasets
+
+You must manually download the [Visdrone2019 datasets](https://github.com/VisDrone/VisDrone-Dataset) and move them into the `datasets` directory.
+
+- `VisDrone2019-DET-test-challenge`
+- `VisDrone2019-DET-train`
+- `VisDrone2019-DET-val`
+
+The FordA dataset for the timeseries classification will download automatically when the notebook for it is run.
+
+### Dependencies
+
+Core packages used across both experiments
+
+- torch
+- tensorflow
+- ultralytics
+- numpy
+- pandas
+- matplotlib
+- Pillow
+- scikit-learn
+
+See [requirements.txt](requirements.txt) for specific versions.
+
+### Hardware Recommendations
+
+| Task | Min VRAM | Recommended |
+|---|---|---|
+| Timeseries Transformer | 2GB | 4GB+ |
+| YOLOv11n detection | 4GB | 6GB+ |
+| YOLOv11m detection | 6GB | 8GB+ (recommended) |
+| Full study | 8GB | 12GB+ |
+
 ## Technical Notes
 
 - **GPU Used**: NVIDIA RTX 4070 Super
